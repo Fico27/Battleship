@@ -8,3 +8,19 @@ describe("Testing a new ship", () => {
     expect(ship.hit()).toBe(2);
   });
 });
+
+describe("Has the ship been sunk?", () => {
+  const ship = new Ship(3);
+
+  test("Has it sunk? after a single hit", () => {
+    ship.hit();
+    expect(ship.isSunk()).toBe(false);
+  });
+
+  test("Has it sunk after three hits", () => {
+    ship.hit();
+    ship.hit();
+    ship.hit();
+    expect(ship.isSunk()).toBe(true);
+  });
+});
