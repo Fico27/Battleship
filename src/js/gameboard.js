@@ -1,10 +1,56 @@
 class Gameboard {
   constructor() {
     this.board = new Array(10).fill(null).map(() => new Array(10).fill(null));
+    this.ships = [];
   }
 
   // Will place a ship on the gameboard at specific coordinates.
-  placeShip() {}
+  placeShip(ship, [startRow, startCol], direction) {
+    length = ship.shipLength();
+
+    if (direction === "vertical") {
+      for (let i = 0; i < length; i++) {
+        this.board[startRow + i][startCol] = ship;
+      }
+    } else if (direction === "horizontal") {
+      for (let i = 0; i < length; i++) {
+        this.board[startRow][startCol + i] = ship;
+      }
+    }
+  }
+
+  inbounds(ship, [startRow, startCol], direction) {
+    length = ship.shipLength();
+
+    if (startRow < 0 || startCol < 0) {
+      return false;
+    }
+
+    if (direction === "horizontal" && startCol + length - 1 > 9) return false;
+    if (direction === "vertical" && startRow + length - 1 > 9) return false;
+
+    return true;
+  }
+
+  checkCollision(ship, [startRow, startCol], direction) {
+    let length = ship.shipLength();
+
+    if (direction === "vertical") {
+      for (let i = 0; i < length; i++) {
+        if (this.board[startRow + i][startCol] !== null) {
+          return false;
+        }
+      }
+    }
+    if (direction === "horizontal") {
+      for (let i = 0; i < length; i++) {
+        if (this.board[startRow][startCol + i] !== null) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 
   // will send an attack and see if it is hit or miss.
   receiveAttack() {}
@@ -12,9 +58,3 @@ class Gameboard {
 
   gameOver() {}
 }
-
-const carrier = new Ship(5);
-const battleship = new Ship(4);
-const destroyer = new Ship(3);
-const submarine = new Ship(3);
-const patrolBoat = new Ship(2);
