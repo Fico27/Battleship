@@ -10,13 +10,14 @@ class Gameboard {
 
     if (direction === "vertical") {
       for (let i = 0; i < length; i++) {
-        this.board[startRow + i][startCol] = ship;
+        this.board[startRow + i][startCol] = { hit: false, theShip: ship };
       }
     } else if (direction === "horizontal") {
       for (let i = 0; i < length; i++) {
-        this.board[startRow][startCol + i] = ship;
+        this.board[startRow][startCol + i] = { hit: false, theShip: ship };
       }
     }
+    this.ships.push(ship);
   }
 
   inbounds(ship, [startRow, startCol], direction) {
@@ -53,8 +54,25 @@ class Gameboard {
   }
 
   // will send an attack and see if it is hit or miss.
-  receiveAttack() {}
+  receiveAttack([row, col]) {
+    let coord = this.board[row][col];
+
+    if (coord === "miss") {
+      return;
+    }
+    if (coord && coord.theShip) {
+      if (coord.hit === false) {
+        coord.hit = true;
+        coord.theShip.hit();
+      }
+      return;
+    }
+
+    this.board[row][col] = "miss";
+  }
   // will check to see if all if p1 or p2 ships are sunk.
 
-  gameOver() {}
+  gameOver() {
+    this.ships.every((ship) => ship.isSunk());
+  }
 }
