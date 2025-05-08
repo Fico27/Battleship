@@ -6,7 +6,14 @@ class Gameboard {
 
   // Will place a ship on the gameboard at specific coordinates.
   placeShip(ship, [startRow, startCol], direction) {
-    length = ship.shipLength();
+    let length = ship.shipLength();
+
+    if (!this.inbounds(ship, [startRow, startCol], direction)) {
+      throw new Error("Ship is out of bounds!");
+    }
+    if (!this.checkCollision(ship, [startRow, startCol], direction)) {
+      throw new Error("Ship is overlapping with another ship");
+    }
 
     if (direction === "vertical") {
       for (let i = 0; i < length; i++) {
@@ -21,7 +28,7 @@ class Gameboard {
   }
 
   inbounds(ship, [startRow, startCol], direction) {
-    length = ship.shipLength();
+    let length = ship.shipLength();
 
     if (startRow < 0 || startCol < 0) {
       return false;
@@ -73,6 +80,9 @@ class Gameboard {
   // will check to see if all if p1 or p2 ships are sunk.
 
   gameOver() {
-    this.ships.every((ship) => ship.isSunk());
+    return this.ships.every((ship) => ship.isSunk());
   }
 }
+
+export default Gameboard;
+s;
