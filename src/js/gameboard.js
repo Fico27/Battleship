@@ -85,4 +85,3 @@ class Gameboard {
 }
 
 export default Gameboard;
-s;

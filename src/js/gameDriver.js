@@ -7,6 +7,7 @@ class GameDriver {
     this.player1 = new Player("Phil");
     this.player2 = new Player("Computer");
     this.currentPlayer = this.player1;
+    this.computerMoves = new Set();
     this.isGameOver = false;
   }
 
@@ -48,6 +49,55 @@ class GameDriver {
 
       player.board.placeShip(ship, [ranNumX, ranNumY], direction);
     });
+  }
+
+  takeTurn() {
+    if (this.currentPlayer === this.player1) {
+      alert(`${this.player1.name}'s turn!`);
+    } else {
+      this.computerTurn();
+    }
+  }
+
+  playerTurn([row, col]) {
+    if (this.isGameOver === true) {
+      return;
+    }
+    if (this.currentPlayer !== this.player1) {
+      return;
+    }
+    this.player2.board.receiveAttack([row, col]);
+
+    if (this.player2.board.gameOver()) {
+      this.isGameOver = true;
+      alert(`${this.player1.name} Wins!`);
+    } else {
+      this.currentPlayer = this.player2;
+      this.takeTurn();
+    }
+  }
+
+  computerTurn() {
+    if (this.isGameOver === true) {
+      return;
+    }
+    let ranNumX = this.getRandomnumber();
+    let ranNumY = this.getRandomnumber();
+
+    while (this.computerMoves.has(`${ranNumX},${ranNumY}`)) {
+      ranNumX = this.getRandomnumber();
+      ranNumY = this.getRandomnumber();
+    }
+    this.computerMoves.add(`${ranNumX},${ranNumY}`);
+    this.player1.board.receiveAttack([ranNumX, ranNumY]);
+
+    if (this.player1.board.gameOver()) {
+      this.isGameOver = true;
+      alert(`${this.player2.name} Wins!`);
+    } else {
+      this.currentPlayer = this.player1;
+      this.takeTurn();
+    }
   }
 
   getRandomnumber() {
