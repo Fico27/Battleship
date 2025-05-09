@@ -67,7 +67,7 @@ class GameDriver {
     if (this.currentPlayer !== this.player1) {
       return;
     }
-    this.player2.gameboard.receiveAttack([row, col]);
+    const wasHit = this.player2.gameboard.receiveAttack([row, col]);
 
     renderBoard(
       document.querySelector(".computer-board"),
@@ -78,10 +78,15 @@ class GameDriver {
     if (this.player2.gameboard.gameOver()) {
       this.isGameOver = true;
       alert(`${this.player1.name} Wins!`);
-    } else {
-      this.currentPlayer = this.player2;
-      this.takeTurn();
+      return;
     }
+    // gives the player/computer an extra turn.
+    if (wasHit) {
+      return;
+    }
+
+    this.currentPlayer = this.player2;
+    this.takeTurn();
   }
 
   computerTurn() {
@@ -96,7 +101,7 @@ class GameDriver {
       ranNumY = this.getRandomnumber();
     }
     this.computerMoves.add(`${ranNumX},${ranNumY}`);
-    this.player1.gameboard.receiveAttack([ranNumX, ranNumY]);
+    const wasHit = this.player1.gameboard.receiveAttack([ranNumX, ranNumY]);
 
     renderBoard(
       document.querySelector(".player-board"),
@@ -107,10 +112,15 @@ class GameDriver {
     if (this.player1.gameboard.gameOver()) {
       this.isGameOver = true;
       alert(`${this.player2.name} Wins!`);
-    } else {
-      this.currentPlayer = this.player1;
-      this.takeTurn();
     }
+
+    // gives the player/computer an extra turn.
+    if (wasHit) {
+      return;
+    }
+
+    this.currentPlayer = this.player1;
+    this.takeTurn();
   }
 
   getRandomnumber() {

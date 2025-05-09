@@ -72,13 +72,10 @@ class Gameboard {
       return false;
     }
 
-    if (coord && coord.theShip) {
-      if (coord.hit === false) {
-        coord.hit = true;
-        coord.theShip.hit();
-        return true;
-      }
-      return;
+    if (coord?.theShip) {
+      coord.hit = true;
+      coord.theShip.hit();
+      return true;
     }
 
     this.board[row][col] = "miss";
