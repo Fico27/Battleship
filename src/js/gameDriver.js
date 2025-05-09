@@ -116,6 +116,7 @@ class GameDriver {
 
     // gives the player/computer an extra turn.
     if (wasHit) {
+      setTimeout(() => this.computerTurn(), 400);
       return;
     }
 
