@@ -23,7 +23,7 @@ class GameDriver {
       this.currentPlayer = this.player1;
     }
 
-    randomShipPlacement(this.player2);
+    this.randomShipPlacement(this.player2);
   }
 
   randomShipPlacement(player) {
@@ -111,3 +111,5 @@ class GameDriver {
     }
   }
 }
+
+export default Gameboard;
