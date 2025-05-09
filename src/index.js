@@ -7,7 +7,12 @@ const computerBoard = document.querySelector(".computer-board");
 
 const gameDriver = new GameDriver();
 
-generateBoard(playerBoard, "player", gameDriver);
-generateBoard(computerBoard, "computer", gameDriver);
+const startButton = document.querySelector(".game-start-btn");
 
-gameDriver.startGame();
+startButton.addEventListener("click", () => {
+  playerBoard.innerHTML = "";
+  computerBoard.innerHTML = "";
+  generateBoard(playerBoard, "player", gameDriver);
+  generateBoard(computerBoard, "computer", gameDriver);
+  gameDriver.startGame();
+});

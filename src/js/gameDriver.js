@@ -16,6 +16,8 @@ class GameDriver {
     //What do I need here????
     // I need to load ships to be placed.
     // I need to load player1 game board. I will load
+    this.player1.gameboard = new Gameboard();
+    this.player2.gameboard = new Gameboard();
 
     if (this.isGameOver === true) {
       this.isGameOver = false;
@@ -25,6 +27,18 @@ class GameDriver {
     }
     this.randomShipPlacement(this.player1);
     this.randomShipPlacement(this.player2);
+
+    renderBoard(
+      document.querySelector(".computer-board"),
+      this.player2.gameboard,
+      "computer"
+    );
+
+    renderBoard(
+      document.querySelector(".player-board"),
+      this.player1.gameboard,
+      "player"
+    );
   }
 
   randomShipPlacement(player) {

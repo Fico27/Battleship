@@ -19,7 +19,6 @@ export function generateBoard(boardOwner, player, gameDriver) {
           const xCoord = parseInt(e.target.dataset.x);
           const yCoord = parseInt(e.target.dataset.y);
           gameDriver.playerTurn([xCoord, yCoord]);
-          e.target.classList.add("clicked");
         });
       }
       boardOwner.appendChild(cell);
@@ -38,9 +37,9 @@ export function renderBoard(domBoard, playerBoard, player) {
     cell.classList.remove("hit", "miss", "ship");
 
     if (currentCell === "miss") {
-      cell.classList.add("miss");
+      cell.classList.add("miss", "clicked");
     } else if (currentCell?.hit === true) {
-      cell.classList.add("hit");
+      cell.classList.add("hit", "clicked");
     } else if (player === "player" && currentCell?.theShip) {
       cell.classList.add("ship");
     }
