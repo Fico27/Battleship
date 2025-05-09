@@ -65,17 +65,24 @@ class Gameboard {
     let coord = this.board[row][col];
 
     if (coord === "miss") {
-      return;
+      return false;
     }
+
+    if (coord?.hit === true) {
+      return false;
+    }
+
     if (coord && coord.theShip) {
       if (coord.hit === false) {
         coord.hit = true;
         coord.theShip.hit();
+        return true;
       }
       return;
     }
 
     this.board[row][col] = "miss";
+    return false;
   }
   // will check to see if all if p1 or p2 ships are sunk.
 

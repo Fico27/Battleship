@@ -13,9 +13,13 @@ export function generateBoard(boardOwner, player, gameDriver) {
 
       if (player === "computer") {
         cell.addEventListener("click", (e) => {
+          //stops the same cell from being clicked again.
+          if (e.target.classList.contains("clicked")) return;
+
           const xCoord = parseInt(e.target.dataset.x);
           const yCoord = parseInt(e.target.dataset.y);
           gameDriver.playerTurn([xCoord, yCoord]);
+          e.target.classList.add("clicked");
         });
       }
       boardOwner.appendChild(cell);
