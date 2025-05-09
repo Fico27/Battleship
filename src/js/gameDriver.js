@@ -23,7 +23,7 @@ class GameDriver {
       this.player2.gameboard = new Gameboard();
       this.currentPlayer = this.player1;
     }
-
+    this.randomShipPlacement(this.player1);
     this.randomShipPlacement(this.player2);
   }
 
@@ -54,7 +54,7 @@ class GameDriver {
 
   takeTurn() {
     if (this.currentPlayer === this.player1) {
-      alert(`${this.player1.name}'s turn!`);
+      // alert(`${this.player1.name}'s turn!`);
     } else {
       this.computerTurn();
     }

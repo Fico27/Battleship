@@ -9,3 +9,5 @@ const gameDriver = new GameDriver();
 
 generateBoard(playerBoard, "player", gameDriver);
 generateBoard(computerBoard, "computer", gameDriver);
+
+gameDriver.startGame();
