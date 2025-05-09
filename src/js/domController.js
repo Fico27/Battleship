@@ -1,7 +1,4 @@
-const playerBoard = document.querySelector(".player-board");
-const computerBoard = document.querySelector(".computer-board");
-
-function generateBoard(boardOwner, player) {
+export function generateBoard(boardOwner, player, gameDriver) {
   //generate rows(x) and columns(y)
 
   for (let x = 0; x < 10; x++) {
@@ -24,4 +21,24 @@ function generateBoard(boardOwner, player) {
       boardOwner.appendChild(cell);
     }
   }
+}
+
+export function renderBoard(domBoard, playerBoard, player) {
+  const allCells = domBoard.querySelectorAll(".cell");
+
+  allCells.forEach((cell) => {
+    const x = parseInt(cell.dataset.x);
+    const y = parseInt(cell.dataset.y);
+    const currentCell = playerBoard.board[x][y];
+
+    cell.classList.remove("hit", "miss", "ship");
+
+    if (currentCell === "miss") {
+      cell.classList.add("miss");
+    } else if (currentCell?.hit === true) {
+      cell.classList.add("hit");
+    } else if (player === "player" && currentCell?.theShip) {
+      cell.classList.add("ship");
+    }
+  });
 }

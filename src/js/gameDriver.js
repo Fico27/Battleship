@@ -1,6 +1,7 @@
-import Gameboard from "../src/js/gameboard";
-import Ship from "../src/js/shipFactory";
-import Player from "../src/js/player";
+import Gameboard from "./gameboard";
+import Ship from "./shipFactory";
+import Player from "./player";
+import { renderBoard } from "./domController";
 
 class GameDriver {
   constructor() {
@@ -18,8 +19,8 @@ class GameDriver {
 
     if (this.isGameOver === true) {
       this.isGameOver = false;
-      this.player1.board = new Gameboard();
-      this.player2.board = new Gameboard();
+      this.player1.gameboard = new Gameboard();
+      this.player2.gameboard = new Gameboard();
       this.currentPlayer = this.player1;
     }
 
@@ -41,13 +42,13 @@ class GameDriver {
       let direction = this.getRandomDirection();
 
       // prettier-ignore
-      while(!(player.board.inbounds(ship, [ranNumX, ranNumY], direction) && player.board.checkCollision(ship, [ranNumX, ranNumY], direction))){
+      while(!(player.gameboard.inbounds(ship, [ranNumX, ranNumY], direction) && player.gameboard.checkCollision(ship, [ranNumX, ranNumY], direction))){
         ranNumX = this.getRandomnumber();
         ranNumY= this.getRandomnumber();
         direction = this.getRandomDirection();
       }
 
-      player.board.placeShip(ship, [ranNumX, ranNumY], direction);
+      player.gameboard.placeShip(ship, [ranNumX, ranNumY], direction);
     });
   }
 
@@ -66,9 +67,15 @@ class GameDriver {
     if (this.currentPlayer !== this.player1) {
       return;
     }
-    this.player2.board.receiveAttack([row, col]);
+    this.player2.gameboard.receiveAttack([row, col]);
 
-    if (this.player2.board.gameOver()) {
+    renderBoard(
+      document.querySelector(".computer-board"),
+      this.player2.gameboard,
+      "computer"
+    );
+
+    if (this.player2.gameboard.gameOver()) {
       this.isGameOver = true;
       alert(`${this.player1.name} Wins!`);
     } else {
@@ -89,9 +96,15 @@ class GameDriver {
       ranNumY = this.getRandomnumber();
     }
     this.computerMoves.add(`${ranNumX},${ranNumY}`);
-    this.player1.board.receiveAttack([ranNumX, ranNumY]);
+    this.player1.gameboard.receiveAttack([ranNumX, ranNumY]);
 
-    if (this.player1.board.gameOver()) {
+    renderBoard(
+      document.querySelector(".player-board"),
+      this.player1.gameboard,
+      "player"
+    );
+
+    if (this.player1.gameboard.gameOver()) {
       this.isGameOver = true;
       alert(`${this.player2.name} Wins!`);
     } else {
@@ -112,4 +125,4 @@ class GameDriver {
   }
 }
 
-export default Gameboard;
+export default GameDriver;
