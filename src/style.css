@@ -87,12 +87,23 @@
   width: 60px;
   background-color: green;
 }
-.ship-panel {
+.rotate-vert {
   height: 300px;
   width: 300px;
   display: flex;
   gap: 20px;
   border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+}
+
+.rotate-hori {
+  height: 300px;
+  width: 300px;
+  display: flex;
+  gap: 20px;
+  border: 1px solid black;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

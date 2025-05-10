@@ -33,6 +33,7 @@ randomButton.addEventListener("click", () => {
 
 resetButton.addEventListener("click", () => {
   shipPanel.classList.remove("hidden");
+  rotateButton.classList.remove("hidden");
   randomButton.classList.remove("hidden");
   gameDriver.startGame();
 });
@@ -46,10 +47,16 @@ rotateButton.addEventListener("click", () => {
       ship.dataset.direction = "horizontal";
       ship.classList.remove("vertical");
       ship.classList.add("horizontal");
+
+      shipPanel.classList.remove("rotate-hori");
+      shipPanel.classList.add("rotate-vert");
     } else {
       ship.dataset.direction = "vertical";
       ship.classList.remove("horizontal");
       ship.classList.add("vertical");
+
+      shipPanel.classList.remove("rotate-vert");
+      shipPanel.classList.add("rotate-hori");
     }
   });
 });

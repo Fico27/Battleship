@@ -76,9 +76,10 @@ class GameDriver {
 
   playerTurn([row, col]) {
     const randomButton = document.querySelector(".game-start-rand");
+    const rotateButton = document.querySelector(".rotate-btn");
     const shipPanel = document.querySelector(".ship-panel");
     randomButton.classList.add("hidden");
-
+    rotateButton.classList.add("hidden");
     shipPanel.classList.add("hidden");
 
     if (this.isGameOver === true) {
