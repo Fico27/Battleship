@@ -75,6 +75,12 @@ class GameDriver {
   }
 
   playerTurn([row, col]) {
+    const randomButton = document.querySelector(".game-start-rand");
+    const shipPanel = document.querySelector(".ship-panel");
+    randomButton.classList.add("hidden");
+
+    shipPanel.classList.add("hidden");
+
     if (this.isGameOver === true) {
       return;
     }
