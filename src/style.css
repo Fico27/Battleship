@@ -30,3 +30,30 @@
 .cell.ship {
   background-color: green;
 }
+
+#carrier {
+  height: 150px;
+  width: 30px;
+  background-color: green;
+}
+#battleship {
+  height: 120px;
+  width: 30px;
+  background-color: green;
+}
+#destroyer,
+#submarine {
+  height: 90px;
+  width: 30px;
+  background-color: green;
+}
+#patrolBoat {
+  height: 60px;
+  width: 30px;
+  background-color: green;
+}
+
+.ship-panel {
+  display: flex;
+  gap: 20px;
+}
