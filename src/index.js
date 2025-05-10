@@ -8,6 +8,7 @@ const computerBoard = document.querySelector(".computer-board");
 const gameDriver = new GameDriver();
 
 const startButton = document.querySelector(".game-start-btn");
+const rotateButton = document.querySelector(".rotate-btn");
 const randomButton = document.querySelector(".game-start-rand");
 const resetButton = document.querySelector(".game-start-reset");
 const gameContainer = document.querySelector(".game-container");
@@ -34,4 +35,21 @@ resetButton.addEventListener("click", () => {
   shipPanel.classList.remove("hidden");
   randomButton.classList.remove("hidden");
   gameDriver.startGame();
+});
+
+rotateButton.addEventListener("click", () => {
+  const rotatedShips = document.querySelectorAll(".ship");
+
+  rotatedShips.forEach((ship) => {
+    if (ship.classList.contains("vertical")) {
+      //change class for design and data-direction value
+      ship.dataset.direction = "horizontal";
+      ship.classList.remove("vertical");
+      ship.classList.add("horizontal");
+    } else {
+      ship.dataset.direction = "vertical";
+      ship.classList.remove("horizontal");
+      ship.classList.add("vertical");
+    }
+  });
 });

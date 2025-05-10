@@ -40,28 +40,53 @@
   gap: 20px;
 }
 
-#carrier {
+#carrier.vertical {
   height: 150px;
   width: 30px;
   background-color: green;
 }
-#battleship {
+
+#battleship.vertical {
   height: 120px;
   width: 30px;
   background-color: green;
 }
-#destroyer,
-#submarine {
+#destroyer.vertical,
+#submarine.vertical {
   height: 90px;
   width: 30px;
   background-color: green;
 }
-#patrolBoat {
+#patrolBoat.vertical {
   height: 60px;
   width: 30px;
   background-color: green;
 }
 
+/* Horizontal for ships*/
+
+#carrier.horizontal {
+  height: 30px;
+  width: 150px;
+  background-color: green;
+}
+
+#battleship.horizontal {
+  height: 30px;
+  width: 120px;
+  background-color: green;
+}
+#destroyer.horizontal,
+#submarine.horizontal {
+  height: 30px;
+  width: 90px;
+  background-color: green;
+}
+#patrolBoat.horizontal {
+  height: 30px;
+  width: 60px;
+  background-color: green;
+}
 .ship-panel {
   height: 300px;
   width: 300px;

@@ -7,20 +7,40 @@
   </head>
   <body>
     <div class="setup-container">
-      <div class="ship-panel hidden">
-        <div class="ship" id="carrier" data-length="5" draggable="true"></div>
+      <div class="ship-panel rotate-vert hidden">
         <div
-          class="ship"
-          id="battleship"
-          data-length="4"
+          class="ship vertical"
+          id="carrier"
+          data-length="5"
+          data-direction="vertical"
           draggable="true"
         ></div>
-        <div class="ship" id="destroyer" data-length="3" draggable="true"></div>
-        <div class="ship" id="submarine" data-length="3" draggable="true"></div>
         <div
-          class="ship"
+          class="ship vertical"
+          id="battleship"
+          data-length="4"
+          data-direction="vertical"
+          draggable="true"
+        ></div>
+        <div
+          class="ship vertical"
+          id="destroyer"
+          data-length="3"
+          data-direction="vertical"
+          draggable="true"
+        ></div>
+        <div
+          class="ship vertical"
+          id="submarine"
+          data-length="3"
+          data-direction="vertical"
+          draggable="true"
+        ></div>
+        <div
+          class="ship vertical"
           id="patrolBoat"
           data-length="2"
+          data-direction="vertical"
           draggable="true"
         ></div>
       </div>
@@ -31,6 +51,7 @@
       </div>
 
       <button class="game-start-btn">Start Game</button>
+      <button class="rotate-btn">Rotate</button>
       <button class="game-start-rand hidden">Randomize</button>
       <button class="game-start-reset hidden">Reset</button>
     </div>
