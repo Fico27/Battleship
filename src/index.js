@@ -24,11 +24,12 @@ startButton.addEventListener("click", () => {
   shipPanel.classList.remove("hidden");
   generateBoard(playerBoard, "player", gameDriver);
   generateBoard(computerBoard, "computer", gameDriver);
+  enableShipDragging();
   gameDriver.startGame();
 });
 
 randomButton.addEventListener("click", () => {
-  gameDriver.startGame();
+  gameDriver.randomShipPlacementPlayer();
 });
 
 resetButton.addEventListener("click", () => {
@@ -39,9 +40,8 @@ resetButton.addEventListener("click", () => {
 });
 
 rotateButton.addEventListener("click", () => {
-  const rotatedShips = document.querySelectorAll(".ship");
-
-  rotatedShips.forEach((ship) => {
+  const ships = document.querySelectorAll(".ship");
+  ships.forEach((ship) => {
     if (ship.classList.contains("vertical")) {
       //change class for design and data-direction value
       ship.dataset.direction = "horizontal";
@@ -50,7 +50,7 @@ rotateButton.addEventListener("click", () => {
 
       shipPanel.classList.remove("rotate-hori");
       shipPanel.classList.add("rotate-vert");
-    } else {
+    } else if (ship.classList.contains("horizontal")) {
       ship.dataset.direction = "vertical";
       ship.classList.remove("horizontal");
       ship.classList.add("vertical");
@@ -60,3 +60,19 @@ rotateButton.addEventListener("click", () => {
     }
   });
 });
+
+function enableShipDragging() {
+  const ships = document.querySelectorAll(".ship");
+
+  ships.forEach((ship) => {
+    ship.addEventListener("dragstart", (e) => {
+      const shipData = {
+        id: ship.id,
+        length: ship.dataset.length,
+        direction: ship.dataset.direction,
+      };
+      console.log("Dragging ship:", shipData); // for testing
+      e.dataTransfer.setData("text/plain", JSON.stringify(shipData));
+    });
+  });
+}

@@ -87,7 +87,7 @@
   width: 60px;
   background-color: green;
 }
-.rotate-vert {
+.ship-panel.rotate-vert {
   height: 300px;
   width: 300px;
   display: flex;

@@ -25,7 +25,7 @@ class GameDriver {
       this.player2.gameboard = new Gameboard();
       this.currentPlayer = this.player1;
     }
-    this.randomShipPlacement(this.player1);
+
     this.randomShipPlacement(this.player2);
 
     renderBoard(
@@ -33,6 +33,49 @@ class GameDriver {
       this.player2.gameboard,
       "computer"
     );
+
+    renderBoard(
+      document.querySelector(".player-board"),
+      this.player1.gameboard,
+      "player"
+    );
+  }
+
+  placeShipByDrag({ id, length, direction }, [x, y]) {
+    const Ship = require("./shipFactory").default;
+    const ship = new Ship(parseInt(length));
+
+    const gameboard = this.player1.gameboard;
+
+    // Check if the spot is valid
+    if (
+      !gameboard.inbounds(ship, [x, y], direction) ||
+      !gameboard.checkCollision(ship, [x, y], direction)
+    ) {
+      alert("Invalid placement.");
+      return;
+    }
+
+    gameboard.placeShip(ship, [x, y], direction);
+
+    // Visually update
+    const { renderBoard } = require("./domController");
+    renderBoard(
+      document.querySelector(".player-board"),
+      this.player1.gameboard,
+      "player"
+    );
+
+    // Optionally remove the ship from the panel
+    const draggedShip = document.getElementById(id);
+    if (draggedShip) {
+      draggedShip.remove();
+    }
+  }
+
+  randomShipPlacementPlayer() {
+    this.player1.gameboard = new Gameboard();
+    this.randomShipPlacement(this.player1);
 
     renderBoard(
       document.querySelector(".player-board"),

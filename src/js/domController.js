@@ -9,6 +9,27 @@ export function generateBoard(boardOwner, player, gameDriver) {
       cell.dataset.y = y;
       cell.dataset.ownerOfBoard = player;
 
+      if (player === "player") {
+        // ✅ Enable dropping
+        cell.addEventListener("dragover", (e) => {
+          e.preventDefault(); // Necessary to allow dropping
+        });
+
+        cell.addEventListener("drop", (e) => {
+          e.preventDefault();
+
+          const shipData = JSON.parse(e.dataTransfer.getData("text/plain"));
+          const dropX = parseInt(cell.dataset.x);
+          const dropY = parseInt(cell.dataset.y);
+          gameDriver.placeShipByDrag(shipData, [dropX, dropY]);
+          //test to see if it gets dropped
+          console.log("Dropped ship:", shipData);
+          console.log("At cell:", dropX, dropY);
+
+          // You will soon call gameDriver.placeShipByDrag(...) here
+        });
+      }
+
       // Add event listener if player is a computer
 
       if (player === "computer") {
