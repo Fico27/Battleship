@@ -22,9 +22,17 @@ export function generateBoard(boardOwner, player, gameDriver) {
           const dropY = parseInt(cell.dataset.y);
           gameDriver.placeShipByDrag(shipData, [dropX, dropY]);
 
-          //test to see if it gets dropped
-          console.log("Dropped ship:", shipData);
-          console.log("At cell:", dropX, dropY);
+          const ships = document.querySelectorAll(".ship");
+          const shipPanel = document.querySelector(".ship-panel");
+
+          //fix this when i get back from lunch:
+          const allPlaced = [...ships].every((ship) => {
+            ship.classList.contains("hidden");
+          });
+
+          if (allPlaced) {
+            shipPanel.classList.toggle("hidden");
+          }
         });
       }
 
