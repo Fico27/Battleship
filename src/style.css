@@ -87,7 +87,7 @@
   width: 60px;
   background-color: green;
 }
-.ship-panel.rotate-vert {
+.rotate-vert {
   height: 300px;
   width: 300px;
   display: flex;
@@ -110,4 +110,13 @@
 
 .hidden {
   display: none;
+}
+
+.player-name,
+.computer-name {
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
 }

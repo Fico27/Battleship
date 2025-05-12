@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="setup-container">
-      <div class="ship-panel rotate-vert">
+      <div class="ship-panel rotate-vert hidden">
         <div
           class="ship vertical"
           id="carrier"
@@ -46,8 +46,14 @@
       </div>
 
       <div class="game-container hidden">
-        <div class="player-board board"></div>
-        <div class="computer-board board" display="none"></div>
+        <div class="player-name">
+          Player
+          <div class="player-board board"></div>
+        </div>
+        <div class="computer-name">
+          Computer
+          <div class="computer-board board" display="none"></div>
+        </div>
       </div>
 
       <button class="game-start-btn">Start Game</button>

@@ -66,10 +66,10 @@ class GameDriver {
       "player"
     );
 
-    // Optionally remove the ship from the panel
+    // Hide ship from panel
     const draggedShip = document.getElementById(id);
     if (draggedShip) {
-      draggedShip.remove();
+      draggedShip.classList.toggle("hidden");
     }
   }
 

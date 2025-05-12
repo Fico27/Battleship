@@ -13,6 +13,7 @@ const randomButton = document.querySelector(".game-start-rand");
 const resetButton = document.querySelector(".game-start-reset");
 const gameContainer = document.querySelector(".game-container");
 const shipPanel = document.querySelector(".ship-panel");
+const theShip = document.querySelectorAll(".ship");
 
 startButton.addEventListener("click", () => {
   playerBoard.innerHTML = "";
@@ -36,6 +37,11 @@ resetButton.addEventListener("click", () => {
   shipPanel.classList.remove("hidden");
   rotateButton.classList.remove("hidden");
   randomButton.classList.remove("hidden");
+  theShip.forEach((ship) => {
+    if (ship.classList.contains("hidden")) {
+      ship.classList.toggle("hidden");
+    }
+  });
   gameDriver.startGame();
 });
 
@@ -45,20 +51,38 @@ rotateButton.addEventListener("click", () => {
     if (ship.classList.contains("vertical")) {
       //change class for design and data-direction value
       ship.dataset.direction = "horizontal";
-      ship.classList.remove("vertical");
-      ship.classList.add("horizontal");
+      ship.classList.toggle("horizontal");
+      ship.classList.toggle("vertical");
 
-      shipPanel.classList.remove("rotate-hori");
-      shipPanel.classList.add("rotate-vert");
-    } else if (ship.classList.contains("horizontal")) {
+      // shipPanel.classList.toggle("rotate-vert");
+      // shipPanel.classList.toggle("rotate-hori");
+      // ship.classList.remove("vertical");
+      // ship.classList.add("horizontal");
+
+      // shipPanel.classList.remove("rotate-hori");
+      // shipPanel.classList.add("rotate-vert");
+    } else {
       ship.dataset.direction = "vertical";
-      ship.classList.remove("horizontal");
-      ship.classList.add("vertical");
+      // go vertical:
+      ship.classList.toggle("vertical");
+      ship.classList.toggle("horizontal");
+      // shipPanel.classList.toggle("rotate-hori");
+      // shipPanel.classList.toggle("rotate-vert");
 
-      shipPanel.classList.remove("rotate-vert");
-      shipPanel.classList.add("rotate-hori");
+      // ship.classList.remove("horizontal");
+      // ship.classList.add("vertical");
+
+      // shipPanel.classList.remove("rotate-vert");
+      // shipPanel.classList.add("rotate-hori");
     }
   });
+  if (shipPanel.classList.contains("rotate-vert")) {
+    shipPanel.classList.remove("rotate-vert");
+    shipPanel.classList.add("rotate-hori");
+  } else {
+    shipPanel.classList.remove("rotate-hori");
+    shipPanel.classList.add("rotate-vert");
+  }
 });
 
 function enableShipDragging() {
