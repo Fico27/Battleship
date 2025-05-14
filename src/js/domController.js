@@ -29,6 +29,11 @@ export function generateBoard(boardOwner, player, gameDriver) {
       if (player === "computer") {
         cell.addEventListener("click", (e) => {
           //stops the same cell from being clicked again.
+          if (!gameDriver.placementCompleted) {
+            alert("You must place all your ships first!");
+            return;
+          }
+
           if (e.target.classList.contains("clicked")) return;
 
           const xCoord = parseInt(e.target.dataset.x);

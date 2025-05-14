@@ -12,6 +12,7 @@ class GameDriver {
     this.isGameOver = false;
     this.shipsPlaced = 0;
     this.totalShips = 5;
+    this.placementCompleted = false;
   }
 
   startGame() {
@@ -29,7 +30,7 @@ class GameDriver {
     }
 
     this.randomShipPlacement(this.player2);
-
+    this.disableComputerBoard();
     renderBoard(
       document.querySelector(".computer-board"),
       this.player2.gameboard,
@@ -76,6 +77,8 @@ class GameDriver {
     if (this.shipsPlaced === this.totalShips) {
       const shipPanel = document.querySelector(".ship-panel");
       shipPanel.classList.toggle("hidden");
+      this.placementCompleted = true;
+      this.computerBoard.classList.remove("disabled");
     }
   }
 
@@ -113,6 +116,11 @@ class GameDriver {
 
       player.gameboard.placeShip(ship, [ranNumX, ranNumY], direction);
     });
+    this.shipsPlaced = 5;
+    this.placementCompleted = true;
+    // if (this.shipsPlaced === 5) {
+    //   this.checkPlacement();
+    // }
   }
 
   takeTurn() {
@@ -123,20 +131,16 @@ class GameDriver {
     }
   }
 
-  allShipsPlaced() {
-    if (this.shipsPlaced === this.totalShips) {
-      return true;
-    }
-  }
-
   playerTurn([row, col]) {
     const randomButton = document.querySelector(".game-start-rand");
     const rotateButton = document.querySelector(".rotate-btn");
     const shipPanel = document.querySelector(".ship-panel");
     randomButton.classList.add("hidden");
     rotateButton.classList.add("hidden");
-    if (this.allShipsPlaced()) {
-      shipPanel.classList.add("hidden");
+
+    if (!this.placementCompleted) {
+      alert("Place all your ships first!");
+      return;
     }
 
     if (this.isGameOver === true) {
@@ -146,10 +150,6 @@ class GameDriver {
       return;
     }
 
-    if (!this.allShipsPlaced()) {
-      alert("Place all your ships before attacking!");
-      return;
-    }
     const wasHit = this.player2.gameboard.receiveAttack([row, col]);
 
     renderBoard(
@@ -207,6 +207,16 @@ class GameDriver {
     this.takeTurn();
   }
 
+  disableComputerBoard() {
+    const compBoard = document.querySelector(".computer-board");
+    compBoard.classList.toggle("disabled");
+  }
+
+  checkPlacement() {
+    if (this.shipsPlaced === this.totalShips) {
+      this.disableComputerBoard();
+    }
+  }
   getRandomnumber() {
     return Math.floor(Math.random() * 10);
   }

@@ -1,3 +1,14 @@
+body {
+  background: url("https://images.unsplash.com/photo-1523350165414-082d792c4bcc?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+    repeat; /* Replace with actual bathroom wallpaper image */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Comic Sans MS", sans-serif; /* Playful font */
+}
+
 .game-container {
   display: flex;
   gap: 20px;
@@ -121,4 +132,36 @@
 
 .ship-panel.hidden {
   display: none !important;
+}
+
+button {
+  padding: 5px 10px;
+  font-size: 16px;
+  font-family: "Comic Sans MS", sans-serif;
+  background: linear-gradient(to bottom, #8b4513, #a0522d);
+  color: white;
+  border: 2px solid #4a2f1a;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(to bottom, #a0522d, #8b4513);
+}
+
+button::before {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+.disabled {
+  pointer-events: none; /* Prevents clicks and touch events */
+  opacity: 0.5; /* Fades the board to indicate it’s inactive */
 }
