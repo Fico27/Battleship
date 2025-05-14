@@ -10,6 +10,8 @@ class GameDriver {
     this.currentPlayer = this.player1;
     this.computerMoves = new Set();
     this.isGameOver = false;
+    this.shipsPlaced = 0;
+    this.totalShips = 5;
   }
 
   startGame() {
@@ -58,8 +60,6 @@ class GameDriver {
 
     gameboard.placeShip(ship, [x, y], direction);
 
-    // Visually update
-    const { renderBoard } = require("./domController");
     renderBoard(
       document.querySelector(".player-board"),
       this.player1.gameboard,
@@ -70,6 +70,12 @@ class GameDriver {
     const draggedShip = document.getElementById(id);
     if (draggedShip) {
       draggedShip.classList.toggle("hidden");
+    }
+    this.shipsPlaced++;
+
+    if (this.shipsPlaced === this.totalShips) {
+      const shipPanel = document.querySelector(".ship-panel");
+      shipPanel.classList.toggle("hidden");
     }
   }
 
@@ -117,18 +123,31 @@ class GameDriver {
     }
   }
 
+  allShipsPlaced() {
+    if (this.shipsPlaced === this.totalShips) {
+      return true;
+    }
+  }
+
   playerTurn([row, col]) {
     const randomButton = document.querySelector(".game-start-rand");
     const rotateButton = document.querySelector(".rotate-btn");
     const shipPanel = document.querySelector(".ship-panel");
     randomButton.classList.add("hidden");
     rotateButton.classList.add("hidden");
-    shipPanel.classList.add("hidden");
+    if (this.allShipsPlaced()) {
+      shipPanel.classList.add("hidden");
+    }
 
     if (this.isGameOver === true) {
       return;
     }
     if (this.currentPlayer !== this.player1) {
+      return;
+    }
+
+    if (!this.allShipsPlaced()) {
+      alert("Place all your ships before attacking!");
       return;
     }
     const wasHit = this.player2.gameboard.receiveAttack([row, col]);

@@ -1,6 +1,6 @@
 .game-container {
   display: flex;
-  gap: 20px; /* space between boards */
+  gap: 20px;
 }
 
 .board {
@@ -63,8 +63,6 @@
   background-color: green;
 }
 
-/* Horizontal for ships*/
-
 #carrier.horizontal {
   height: 30px;
   width: 150px;
@@ -118,5 +116,9 @@
 }
 
 .hidden {
+  display: none !important;
+}
+
+.ship-panel.hidden {
   display: none !important;
 }

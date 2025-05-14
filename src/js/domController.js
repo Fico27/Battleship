@@ -21,18 +21,6 @@ export function generateBoard(boardOwner, player, gameDriver) {
           const dropX = parseInt(cell.dataset.x);
           const dropY = parseInt(cell.dataset.y);
           gameDriver.placeShipByDrag(shipData, [dropX, dropY]);
-
-          const ships = document.querySelectorAll(".ship");
-          const shipPanel = document.querySelector(".ship-panel");
-
-          //fix this when i get back from lunch:
-          const allPlaced = [...ships].every((ship) => {
-            ship.classList.contains("hidden");
-          });
-
-          if (allPlaced) {
-            shipPanel.classList.toggle("hidden");
-          }
         });
       }
 
