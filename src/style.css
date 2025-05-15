@@ -97,8 +97,8 @@ body {
   background-color: #7a5901;
 }
 .rotate-vert {
-  height: 300px;
-  width: 300px;
+  height: 250px;
+  width: 250px;
   display: flex;
   gap: 20px;
   border: 1px solid black;
@@ -107,8 +107,8 @@ body {
 }
 
 .rotate-hori {
-  height: 300px;
-  width: 300px;
+  height: 250px;
+  width: 250px;
   display: flex;
   gap: 20px;
   border: 1px solid black;
@@ -124,6 +124,8 @@ body {
 .player-name,
 .computer-name {
   text-align: center;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .hidden {
@@ -138,7 +140,7 @@ button {
   padding: 5px 10px;
   font-size: 16px;
   font-family: "Comic Sans MS", sans-serif;
-  background: linear-gradient(to bottom, #8b4513, #a0522d);
+  background: linear-gradient(to bottom, #7a5901, #a0522d);
   color: white;
   border: 2px solid #4a2f1a;
   border-radius: 10px;
@@ -164,4 +166,23 @@ button::before {
 .disabled {
   pointer-events: none; /* Prevents clicks and touch events */
   opacity: 0.5; /* Fades the board to indicate it’s inactive */
+}
+
+.game-status {
+  text-align: center;
+  padding: 25px;
+  color: #7a5901;
+  border: 2px solid #7a5901;
+  margin: 25px 15px;
+  font-weight: bolder;
+  font-size: 20px;
+  background-color: white;
+}
+
+h1 {
+  padding: 25px;
+  margin-bottom: 50px;
+  border: 2px solid #3c280d;
+  color: #3c280d;
+  background-color: rgba(101, 67, 33, 0.2);
 }

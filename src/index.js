@@ -15,6 +15,7 @@ const gameContainer = document.querySelector(".game-container");
 const shipPanel = document.querySelector(".ship-panel");
 const theShip = document.querySelectorAll(".ship");
 const playGameBtn = document.querySelector(".play-game");
+const status = document.querySelector(".game-status");
 
 startButton.addEventListener("click", () => {
   playerBoard.innerHTML = "";
@@ -26,6 +27,7 @@ startButton.addEventListener("click", () => {
   shipPanel.classList.remove("hidden");
   rotateButton.classList.toggle("hidden");
   playGameBtn.classList.toggle("hidden");
+  status.innerHTML = "Place your ships! Then press play!";
   generateBoard(playerBoard, "player", gameDriver);
   generateBoard(computerBoard, "computer", gameDriver);
   enableShipDragging();
@@ -38,6 +40,8 @@ playGameBtn.addEventListener("click", () => {
     shipPanel.classList.add("hidden");
     rotateButton.classList.add("hidden");
     randomButton.classList.add("hidden");
+    computerBoard.classList.remove("disabled");
+    status.innerHTML = "Attack! Sink your opponents shits!";
   }
 });
 
@@ -54,6 +58,7 @@ resetButton.addEventListener("click", () => {
   rotateButton.classList.remove("hidden");
   randomButton.classList.remove("hidden");
   playGameBtn.classList.remove("hidden");
+  status.innerHTML = "Place your ships! Then press play!";
   const allPlayerCells = document.querySelectorAll(".player-board .cell");
   allPlayerCells.forEach((cell) => cell.classList.remove("ship"));
   gameDriver.shipsPlaced = 0;
@@ -101,7 +106,7 @@ function enableShipDragging() {
         length: ship.dataset.length,
         direction: ship.dataset.direction,
       };
-      console.log("Dragging ship:", shipData); // for testing
+
       e.dataTransfer.setData("text/plain", JSON.stringify(shipData));
     });
   });

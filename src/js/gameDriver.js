@@ -5,7 +5,7 @@ import { renderBoard } from "./domController";
 
 class GameDriver {
   constructor() {
-    this.player1 = new Player("Phil");
+    this.player1 = new Player("Player 1");
     this.player2 = new Player("Computer");
     this.currentPlayer = this.player1;
     this.computerMoves = new Set();
@@ -73,13 +73,6 @@ class GameDriver {
       draggedShip.classList.toggle("hidden");
     }
     this.shipsPlaced++;
-
-    // if (this.shipsPlaced === this.totalShips) {
-    //   const shipPanel = document.querySelector(".ship-panel");
-    //   shipPanel.classList.toggle("hidden");
-    //   this.placementCompleted = true;
-    //   this.computerBoard.classList.remove("disabled");
-    // }
   }
 
   randomShipPlacementPlayer() {
@@ -123,18 +116,19 @@ class GameDriver {
 
   takeTurn() {
     if (this.currentPlayer === this.player1) {
-      // alert(`${this.player1.name}'s turn!`);
     } else {
-      this.computerTurn();
+      setTimeout(() => this.computerTurn(), 1000);
     }
   }
 
   playerTurn([row, col]) {
+    const status = document.querySelector(".game-status");
     const randomButton = document.querySelector(".game-start-rand");
     const rotateButton = document.querySelector(".rotate-btn");
     const shipPanel = document.querySelector(".ship-panel");
     randomButton.classList.add("hidden");
     rotateButton.classList.add("hidden");
+    const computerBoard = document.querySelector(".computer-board");
 
     if (this.isGameOver === true) {
       return;
@@ -153,22 +147,28 @@ class GameDriver {
 
     if (this.player2.gameboard.gameOver()) {
       this.isGameOver = true;
-      alert(`${this.player1.name} Wins!`);
+      status.innerHTML = `${this.player1.name} Wins!`;
       return;
     }
     // gives the player/computer an extra turn.
     if (wasHit) {
+      status.innerHTML = "Hit! Go again!";
       return;
     }
 
+    computerBoard.classList.add("disabled");
+    status.innerHTML = "It's the computer's turn!";
     this.currentPlayer = this.player2;
     this.takeTurn();
   }
 
   computerTurn() {
+    const computerBoard = document.querySelector(".computer-board");
+    const status = document.querySelector(".game-status");
     if (this.isGameOver === true) {
       return;
     }
+
     let ranNumX = this.getRandomnumber();
     let ranNumY = this.getRandomnumber();
 
@@ -187,7 +187,7 @@ class GameDriver {
 
     if (this.player1.gameboard.gameOver()) {
       this.isGameOver = true;
-      alert(`${this.player2.name} Wins!`);
+      status.innerHTML = `${this.player2.name} Wins!`;
     }
 
     // gives the player/computer an extra turn.
@@ -195,14 +195,15 @@ class GameDriver {
       setTimeout(() => this.computerTurn(), 400);
       return;
     }
-
+    computerBoard.classList.remove("disabled");
+    status.innerHTML = "It's your turn!";
     this.currentPlayer = this.player1;
     this.takeTurn();
   }
 
   disableComputerBoard() {
     const compBoard = document.querySelector(".computer-board");
-    compBoard.classList.toggle("disabled");
+    compBoard.classList.add("disabled");
   }
 
   checkPlacement() {
