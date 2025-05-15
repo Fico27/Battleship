@@ -14,6 +14,7 @@ const resetButton = document.querySelector(".game-start-reset");
 const gameContainer = document.querySelector(".game-container");
 const shipPanel = document.querySelector(".ship-panel");
 const theShip = document.querySelectorAll(".ship");
+const playGameBtn = document.querySelector(".play-game");
 
 startButton.addEventListener("click", () => {
   playerBoard.innerHTML = "";
@@ -24,18 +25,25 @@ startButton.addEventListener("click", () => {
   startButton.classList.add("hidden");
   shipPanel.classList.remove("hidden");
   rotateButton.classList.toggle("hidden");
+  playGameBtn.classList.toggle("hidden");
   generateBoard(playerBoard, "player", gameDriver);
   generateBoard(computerBoard, "computer", gameDriver);
   enableShipDragging();
   gameDriver.startGame();
 });
 
+playGameBtn.addEventListener("click", () => {
+  if (gameDriver.checkPlacement()) {
+    playGameBtn.classList.toggle("hidden");
+    shipPanel.classList.add("hidden");
+    rotateButton.classList.add("hidden");
+    randomButton.classList.add("hidden");
+  }
+});
+
 randomButton.addEventListener("click", () => {
   gameDriver.randomShipPlacementPlayer();
 
-  // theShip.forEach((ship) => {
-  //   ship.draggable = false;
-  // });
   shipPanel.classList.toggle("hidden");
   randomButton.classList.toggle("hidden");
   rotateButton.classList.toggle("hidden");
@@ -45,8 +53,10 @@ resetButton.addEventListener("click", () => {
   shipPanel.classList.remove("hidden");
   rotateButton.classList.remove("hidden");
   randomButton.classList.remove("hidden");
+  playGameBtn.classList.remove("hidden");
   const allPlayerCells = document.querySelectorAll(".player-board .cell");
   allPlayerCells.forEach((cell) => cell.classList.remove("ship"));
+  gameDriver.shipsPlaced = 0;
 
   theShip.forEach((ship) => {
     if (ship.classList.contains("hidden")) {

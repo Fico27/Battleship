@@ -74,17 +74,20 @@ class GameDriver {
     }
     this.shipsPlaced++;
 
-    if (this.shipsPlaced === this.totalShips) {
-      const shipPanel = document.querySelector(".ship-panel");
-      shipPanel.classList.toggle("hidden");
-      this.placementCompleted = true;
-      this.computerBoard.classList.remove("disabled");
-    }
+    // if (this.shipsPlaced === this.totalShips) {
+    //   const shipPanel = document.querySelector(".ship-panel");
+    //   shipPanel.classList.toggle("hidden");
+    //   this.placementCompleted = true;
+    //   this.computerBoard.classList.remove("disabled");
+    // }
   }
 
   randomShipPlacementPlayer() {
     this.player1.gameboard = new Gameboard();
     this.randomShipPlacement(this.player1);
+
+    this.shipsPlaced = 5;
+    this.placementCompleted = true;
 
     renderBoard(
       document.querySelector(".player-board"),
@@ -116,11 +119,6 @@ class GameDriver {
 
       player.gameboard.placeShip(ship, [ranNumX, ranNumY], direction);
     });
-    this.shipsPlaced = 5;
-    this.placementCompleted = true;
-    // if (this.shipsPlaced === 5) {
-    //   this.checkPlacement();
-    // }
   }
 
   takeTurn() {
@@ -137,11 +135,6 @@ class GameDriver {
     const shipPanel = document.querySelector(".ship-panel");
     randomButton.classList.add("hidden");
     rotateButton.classList.add("hidden");
-
-    if (!this.placementCompleted) {
-      alert("Place all your ships first!");
-      return;
-    }
 
     if (this.isGameOver === true) {
       return;
@@ -214,7 +207,12 @@ class GameDriver {
 
   checkPlacement() {
     if (this.shipsPlaced === this.totalShips) {
-      this.disableComputerBoard();
+      const compBoard = document.querySelector(".computer-board");
+      compBoard.classList.toggle("disabled");
+      return true;
+    } else {
+      alert("Place all your ships!");
+      return false;
     }
   }
   getRandomnumber() {

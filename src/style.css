@@ -39,7 +39,7 @@ body {
 }
 
 .cell.ship {
-  background-color: green;
+  background-color: #7a5901;
 }
 
 .setup-container {
@@ -54,47 +54,47 @@ body {
 #carrier.vertical {
   height: 150px;
   width: 30px;
-  background-color: green;
+  background-color: #7a5901;
 }
 
 #battleship.vertical {
   height: 120px;
   width: 30px;
-  background-color: green;
+  background-color: #7a5901;
 }
 #destroyer.vertical,
 #submarine.vertical {
   height: 90px;
   width: 30px;
-  background-color: green;
+  background-color: #7a5901;
 }
 #patrolBoat.vertical {
   height: 60px;
   width: 30px;
-  background-color: green;
+  background-color: #7a5901;
 }
 
 #carrier.horizontal {
   height: 30px;
   width: 150px;
-  background-color: green;
+  background-color: #7a5901;
 }
 
 #battleship.horizontal {
   height: 30px;
   width: 120px;
-  background-color: green;
+  background-color: #7a5901;
 }
 #destroyer.horizontal,
 #submarine.horizontal {
   height: 30px;
   width: 90px;
-  background-color: green;
+  background-color: #7a5901;
 }
 #patrolBoat.horizontal {
   height: 30px;
   width: 60px;
-  background-color: green;
+  background-color: #7a5901;
 }
 .rotate-vert {
   height: 300px;
