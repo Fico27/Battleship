@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BattleShits</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <div class="main-container">
+      <h1>BattleShits: The Crappiest Naval Battle</h1>
+
+      <div class="game-status">Let's start this!</div>
+      <div class="setup-container">
+        <div class="ship-panel rotate-vert hidden">
+          <div
+            class="ship vertical"
+            id="carrier"
+            data-length="5"
+            data-direction="vertical"
+            draggable="true"
+          ></div>
+          <div
+            class="ship vertical"
+            id="battleship"
+            data-length="4"
+            data-direction="vertical"
+            draggable="true"
+          ></div>
+          <div
+            class="ship vertical"
+            id="destroyer"
+            data-length="3"
+            data-direction="vertical"
+            draggable="true"
+          ></div>
+          <div
+            class="ship vertical"
+            id="submarine"
+            data-length="3"
+            data-direction="vertical"
+            draggable="true"
+          ></div>
+          <div
+            class="ship vertical"
+            id="patrolBoat"
+            data-length="2"
+            data-direction="vertical"
+            draggable="true"
+          ></div>
+        </div>
+
+        <div class="game-container hidden">
+          <div class="player-name">
+            Player
+            <div class="player-board board"></div>
+          </div>
+          <div class="computer-name">
+            Computer
+            <div class="computer-board board" display="none"></div>
+          </div>
+        </div>
+        <div class="btn-container">
+          <button class="play-game hidden">💦 Play</button>
+          <button class="game-start-btn">💦 Start Game</button>
+          <button class="rotate-btn hidden">💦 Rotate</button>
+          <button class="game-start-rand hidden">💦 Randomize</button>
+          <button class="game-start-reset hidden">💦 Reset</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
