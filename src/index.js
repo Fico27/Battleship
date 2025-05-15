@@ -60,8 +60,16 @@ resetButton.addEventListener("click", () => {
   playGameBtn.classList.remove("hidden");
   status.innerHTML = "Place your ships! Then press play!";
   const allPlayerCells = document.querySelectorAll(".player-board .cell");
+
+  playerBoard.innerHTML = "";
+  computerBoard.innerHTML = "";
+  generateBoard(playerBoard, "player", gameDriver);
+  generateBoard(computerBoard, "computer", gameDriver);
+
   allPlayerCells.forEach((cell) => cell.classList.remove("ship"));
   gameDriver.shipsPlaced = 0;
+  gameDriver.placementCompleted = false;
+  gameDriver.computerMoves = new Set();
 
   theShip.forEach((ship) => {
     if (ship.classList.contains("hidden")) {
