@@ -19,8 +19,8 @@ Live Demo:
 - Visual feedback: hits (red), misses (blue/gray), sunk ships
 - Computer makes random legal moves (no smart AI – keeps it fair and simple)
 - Game ends when all ships of one side are sunk → winner announcement
-- Fully tested core logic with Jest (no DOM testing)
-
+- Fully tested core logic with Jest
+  
 ## Technologies Used
 
 - **Language**: JavaScript
