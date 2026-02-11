@@ -3,9 +3,9 @@
 A Battleship game implementation built with **pure JavaScript**, **Test-Driven Development (TDD)** using **Jest**, and following The Odin Project's JavaScript curriculum.
 
 Live Demo:  
-👉 https://fico27.github.io/Battleship/
+ https://fico27.github.io/Battleship/
 
-> "BattleShits: The Crappiest Naval Battle" 💦  
+> "BattleShits: The Crappiest Naval Battle"  
 
 ## Features
 
