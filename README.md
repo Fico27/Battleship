@@ -5,7 +5,7 @@ A Battleship game implementation built with **pure JavaScript**, **Test-Driven D
 Live Demo:  
  https://fico27.github.io/Battleship/
 
-> "BattleShits: The Crappiest Naval Battle"  
+> "BattleShits: The Crappiest Naval Battle"
 
 ## Features
 
@@ -20,7 +20,7 @@ Live Demo:
 - Computer makes random legal moves (no smart AI – keeps it fair and simple)
 - Game ends when all ships of one side are sunk → winner announcement
 - Fully tested core logic with Jest
-  
+
 ## Technologies Used
 
 - **Language**: JavaScript
